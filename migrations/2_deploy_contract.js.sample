@@ -1,0 +1,11 @@
+const Settlement = artifacts.require('Settlement');
+const {deployProxy} = require('@openzeppelin/truffle-upgrades');
+
+module.exports = function(deployer) {
+    deployer.then(function() {
+        console.log("===deploy Settlement===")
+        return deployProxy(Settlement, [], { deployer, unsafeAllowCustomTypes: true });
+    }).then(function(ins) {
+        console.log("===settlement: ", ins.address);
+    })
+};

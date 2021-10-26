@@ -1,0 +1,17 @@
+const Settlement = artifacts.require("Settlement");
+const {upgradeProxy} = require('@openzeppelin/truffle-upgrades');
+
+module.exports = function(deployer) {
+    // heco & bsc
+    console.log('begin to upgrade')
+
+    deployer.then(async ()=>{
+        //settlementProxy = await Settlement.deployed();
+        //console.log('settlementProxy: ', settlementProxy.address)
+
+        // heco-test: 0x5B64451609e1dcbd842aCA64c144bC322f96f446
+        ins = await upgradeProxy('0x5538fedF72fd47a8aC963Bb933cB495B3fF0b300', Settlement, { deployer, unsafeAllowCustomTypes: true })
+        console.log("updated Proxy: " + ins.address)
+    })
+
+};
